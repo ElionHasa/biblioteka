@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hyr — Biblioteka “Genc Leka”</title>
+  <link rel="stylesheet" href="/tailwind.css">
+</head>
+<body class="flex min-h-screen flex-col">
+  <div id="site-header"></div>
+  <main class="mx-auto w-full max-w-md flex-1 px-4 py-12">
+    <h1 class="text-3xl font-semibold">Hyr në llogari</h1>
+    <p class="mt-2 text-slate-600">Shkruaj të njëjtat të dhëna që përdore kur u regjistrove.</p>
+    <form id="form" class="panel mt-6 space-y-4" novalidate>
+      <div class="grid grid-cols-2 gap-4">
+        <div><label class="label" for="first_name">Emri</label><input class="input" id="first_name" name="first_name" required maxlength="50" autocomplete="given-name"></div>
+        <div><label class="label" for="last_name">Mbiemri</label><input class="input" id="last_name" name="last_name" required maxlength="50" autocomplete="family-name"></div>
+      </div>
+      <div><label class="label" for="class_name">Klasa</label><input class="input" id="class_name" name="class_name" required maxlength="10" placeholder="p.sh. 7/A"></div>
+      <div><label class="label" for="password">Fjalëkalimi</label><input class="input" id="password" name="password" type="password" required autocomplete="current-password"></div>
+      <p id="msg" role="alert" class="hidden"></p>
+      <button class="btn btn-primary w-full" type="submit">Hyr</button>
+    </form>
+    <p class="mt-5 text-center text-sm text-slate-600">Nuk ke llogari? <a href="/regjistrohu.html" class="font-semibold text-brand-700 hover:underline">Regjistrohu</a></p>
+    <p class="mt-2 text-center text-sm text-slate-500">Harrove fjalëkalimin? Kërkoji bibliotekarit ta ndryshojë.</p>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="/common.js"></script>
+  <script src="/layout.js"></script>
+  <script src="/hyr.js"></script>
+</body>
+</html>

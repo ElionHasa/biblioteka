@@ -1,0 +1,21 @@
+{
+  "name": "biblioteka-genc-leka",
+  "version": "2.0.0",
+  "description": "Faqja e bibliotekës së shkollës Genc Leka",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "set-password": "node scripts/set-password.js",
+    "build:css": "tailwindcss -i ./src/input.css -o ./public/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./public/tailwind.css --watch"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

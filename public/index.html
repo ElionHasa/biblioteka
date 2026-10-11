@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Biblioteka “Genc Leka”</title>
+  <link rel="stylesheet" href="/tailwind.css">
+</head>
+<body class="flex min-h-screen flex-col">
+  <div id="site-header"></div>
+
+  <main class="flex-1">
+    <section class="bg-brand-900 text-white">
+      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
+        <h1 class="max-w-2xl text-4xl font-semibold leading-tight sm:text-5xl">Gjej librin tënd të radhës</h1>
+        <p class="mt-3 max-w-xl text-brand-100">Kërko në koleksionin e shkollës dhe shiko menjëherë nëse libri është i lirë.</p>
+        <label for="q" class="relative mt-7 block max-w-2xl">
+          <span class="sr-only">Kërko libër</span>
+          <span data-icon="search" class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></span>
+          <input id="q" type="search" class="input py-3.5 pl-12 text-base shadow-lg" placeholder="Kërko sipas titullit ose autorit" autocomplete="off">
+        </label>
+      </div>
+    </section>
+
+    <div class="mx-auto grid max-w-7xl gap-8 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
+      <section aria-labelledby="books-title">
+        <h2 id="books-title" class="sr-only">Librat</h2>
+        <div id="chips" class="-mx-4 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0"></div>
+        <p id="count" class="mt-4 text-sm text-slate-500" aria-live="polite"></p>
+        <div id="books" class="mt-4 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6"></div>
+      </section>
+
+      <aside class="space-y-5 lg:sticky lg:top-24 lg:self-start">
+        <div class="panel">
+          <h2 class="text-lg font-semibold">Koleksioni</h2>
+          <dl class="mt-3 divide-y divide-slate-100 text-sm">
+            <div class="flex justify-between py-2"><dt class="text-slate-600">Tituj</dt><dd id="st-titles" class="font-semibold">–</dd></div>
+            <div class="flex justify-between py-2"><dt class="text-slate-600">Kopje të lira tani</dt><dd id="st-available" class="font-semibold">–</dd></div>
+            <div class="flex justify-between py-2"><dt class="text-slate-600">Kategori</dt><dd id="st-cats" class="font-semibold">–</dd></div>
+          </dl>
+        </div>
+
+        <div class="panel">
+          <div class="flex items-center justify-between gap-3">
+            <h2 class="text-lg font-semibold">Orari</h2>
+            <span id="open-now"></span>
+          </div>
+          <dl id="hours" class="mt-3 divide-y divide-slate-100 text-sm"></dl>
+        </div>
+
+        <div class="panel">
+          <h2 class="text-lg font-semibold">Si të huazosh një libër</h2>
+          <ol class="mt-4 space-y-4 text-sm text-slate-700">
+            <li class="flex gap-3"><span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-100 text-xs font-bold text-brand-800">1</span><span id="step-1">Krijo llogarinë tënde me emrin, klasën dhe një fjalëkalim.</span></li>
+            <li class="flex gap-3"><span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-100 text-xs font-bold text-brand-800">2</span><span>Gjej këtu një libër që është i lirë.</span></li>
+            <li class="flex gap-3"><span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-100 text-xs font-bold text-brand-800">3</span><span>Shko te bibliotekari. Kthimin e bën brenda 14 ditëve.</span></li>
+          </ol>
+          <a id="cta" href="/regjistrohu.html" class="btn btn-primary mt-5 w-full">Krijo llogari</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="/common.js"></script>
+  <script src="/layout.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

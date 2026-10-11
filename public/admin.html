@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Paneli i administratorit — Biblioteka “Genc Leka”</title>
+  <link rel="stylesheet" href="/tailwind.css">
+</head>
+<body class="min-h-screen">
+
+  <!-- Hyrja -->
+  <main id="login-view" hidden class="grid min-h-screen place-items-center px-4">
+    <div class="w-full max-w-sm">
+      <div class="mb-6 flex items-center gap-3">
+        <span data-icon="book" data-size="h-6 w-6" class="grid h-11 w-11 place-items-center rounded-xl bg-brand-700 text-white"></span>
+        <div class="leading-tight"><p class="font-display text-lg font-semibold">Genc Leka</p><p class="text-sm text-slate-500">Paneli i administratorit</p></div>
+      </div>
+      <form id="login" class="panel space-y-4">
+        <div>
+          <label class="label" for="password">Fjalëkalimi</label>
+          <input id="password" type="password" class="input" required autocomplete="current-password">
+        </div>
+        <p id="login-msg" role="alert" class="hidden"></p>
+        <button class="btn btn-primary w-full" type="submit">Hyr</button>
+      </form>
+      <a href="/" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-ink"><span data-icon="back" data-size="h-4 w-4"></span>Kthehu te faqja e bibliotekës</a>
+    </div>
+  </main>
+
+  <!-- Paneli -->
+  <div id="app" hidden class="lg:grid lg:min-h-screen lg:grid-cols-[16rem_minmax(0,1fr)]">
+    <aside class="flex flex-col gap-4 bg-brand-950 p-4 text-brand-100 lg:sticky lg:top-0 lg:h-screen lg:p-5">
+      <div class="flex items-center gap-3 px-1">
+        <span data-icon="book" data-size="h-6 w-6" class="grid h-10 w-10 place-items-center rounded-xl bg-brand-600 text-white"></span>
+        <div class="leading-tight"><p class="font-display text-lg font-semibold text-white">Genc Leka</p><p class="text-xs text-brand-200">Paneli i administratorit</p></div>
+      </div>
+      <nav class="flex gap-1 overflow-x-auto lg:flex-col" role="tablist" aria-label="Seksionet">
+        <button type="button" role="tab" data-tab="loans" aria-selected="true" class="flex shrink-0 items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-brand-100 transition hover:bg-white/10 aria-selected:bg-white/15 aria-selected:text-white"><span data-icon="loans"></span>Huazimet</button>
+        <button type="button" role="tab" data-tab="books" aria-selected="false" class="flex shrink-0 items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-brand-100 transition hover:bg-white/10 aria-selected:bg-white/15 aria-selected:text-white"><span data-icon="book"></span>Librat</button>
+        <button type="button" role="tab" data-tab="students" aria-selected="false" class="flex shrink-0 items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-brand-100 transition hover:bg-white/10 aria-selected:bg-white/15 aria-selected:text-white"><span data-icon="users"></span>Nxënësit</button>
+      </nav>
+      <div class="flex flex-wrap gap-1 lg:mt-auto lg:flex-col">
+        <a href="/" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-brand-200 hover:bg-white/10 hover:text-white"><span data-icon="back"></span>Faqja e bibliotekës</a>
+        <button id="logout" type="button" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-brand-200 hover:bg-white/10 hover:text-white"><span data-icon="logout"></span>Dil</button>
+      </div>
+    </aside>
+
+    <div class="min-w-0 px-4 py-6 sm:px-8 sm:py-8">
+      <div id="stats" class="grid grid-cols-2 gap-4 xl:grid-cols-4"></div>
+      <p id="notice" role="status" class="mt-6 hidden"></p>
+
+      <!-- Huazimet -->
+      <section id="tab-loans" class="mt-8">
+        <h1 class="text-2xl font-semibold">Huazimet</h1>
+        <form id="loan-form" class="panel mt-4">
+          <h2 class="text-lg font-semibold">Regjistro huazim</h2>
+          <div class="mt-4 grid gap-6 md:grid-cols-2">
+            <div>
+              <label class="label" for="student-search">Nxënësi</label>
+              <input id="student-search" type="search" class="input" placeholder="Kërko nxënësin" autocomplete="off">
+              <select id="loan-student" size="5" required class="input mt-2" aria-label="Zgjidh nxënësin"></select>
+            </div>
+            <div class="space-y-4">
+              <div><label class="label" for="loan-book">Libri (vetëm ata të lirë)</label><select id="loan-book" required class="input"></select></div>
+              <div class="grid grid-cols-2 gap-4">
+                <div><label class="label" for="loan-date">Data e huazimit</label><input id="loan-date" type="date" required class="input"></div>
+                <div><label class="label" for="due-date">Afati i kthimit</label><input id="due-date" type="date" required class="input"></div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary mt-5" type="submit">Regjistro huazimin</button>
+        </form>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <select id="loan-status" class="input w-auto" aria-label="Filtro huazimet">
+            <option value="active">Të pakthyera</option>
+            <option value="overdue">Me vonesë</option>
+            <option value="all">Të gjitha</option>
+          </select>
+          <input id="loan-q" type="search" class="input min-w-[14rem] flex-1" placeholder="Kërko libër ose nxënës" autocomplete="off">
+        </div>
+        <div class="mt-3 overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
+          <table class="tbl">
+            <thead><tr><th>Libri</th><th>Nxënësi</th><th>Klasa</th><th>Huazuar</th><th>Afati</th><th>Statusi</th><th></th></tr></thead>
+            <tbody id="loan-rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Librat -->
+      <section id="tab-books" hidden class="mt-8">
+        <h1 class="text-2xl font-semibold">Librat</h1>
+        <div id="demo-banner" hidden class="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-900 ring-1 ring-inset ring-amber-200">
+          <p id="demo-text"></p>
+          <button id="clear-demo" type="button" class="btn btn-danger btn-sm">Fshi librat demo</button>
+        </div>
+        <form id="book-form" class="panel mt-4">
+          <h2 id="book-form-title" class="text-lg font-semibold">Shto libër</h2>
+          <input type="hidden" id="book-id">
+          <div class="mt-4 grid gap-4 md:grid-cols-2">
+            <div><label class="label" for="b-title">Titulli</label><input id="b-title" class="input" required maxlength="200"></div>
+            <div><label class="label" for="b-author">Autori</label><input id="b-author" class="input" required maxlength="120"></div>
+            <div><label class="label" for="b-category">Kategoria</label><input id="b-category" class="input" required maxlength="60" list="categories"><datalist id="categories"></datalist></div>
+            <div><label class="label" for="b-copies">Numri i kopjeve</label><input id="b-copies" type="number" min="1" max="1000" value="1" required class="input"></div>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <button class="btn btn-primary" type="submit" id="book-save">Shto librin</button>
+            <button class="btn btn-ghost" type="button" id="book-cancel" hidden>Anulo</button>
+          </div>
+        </form>
+
+        <input id="book-q" type="search" class="input mt-6" placeholder="Kërko sipas titullit ose autorit" autocomplete="off">
+        <div class="mt-3 overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
+          <table class="tbl">
+            <thead><tr><th>Titulli</th><th>Autori</th><th>Kategoria</th><th>Kopje</th><th>Të lira</th><th></th></tr></thead>
+            <tbody id="book-rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Nxënësit -->
+      <section id="tab-students" hidden class="mt-8">
+        <h1 class="text-2xl font-semibold">Nxënësit</h1>
+        <input id="student-q" type="search" class="input mt-4" placeholder="Kërko nxënës ose klasë" autocomplete="off">
+        <div class="mt-3 overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
+          <table class="tbl">
+            <thead><tr><th>Mbiemri dhe emri</th><th>Klasa</th><th>Regjistruar</th><th>Libra të huazuar</th><th></th></tr></thead>
+            <tbody id="student-rows"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <dialog id="pw-dialog" class="m-auto w-full max-w-sm rounded-2xl p-0 shadow-xl backdrop:bg-slate-900/40">
+    <form id="pw-form" class="space-y-4 p-6">
+      <h2 class="text-lg font-semibold">Fjalëkalim i ri</h2>
+      <p id="pw-who" class="text-sm text-slate-600"></p>
+      <div><label class="label" for="pw-new">Fjalëkalimi i ri (të paktën 6 karaktere)</label><input id="pw-new" type="text" minlength="6" maxlength="100" required class="input" autocomplete="off"></div>
+      <p id="pw-err" role="alert" class="hidden"></p>
+      <div class="flex justify-end gap-2">
+        <button type="button" id="pw-cancel" class="btn btn-ghost">Anulo</button>
+        <button type="submit" class="btn btn-primary">Ruaj</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="/common.js"></script>
+  <script src="/admin.js"></script>
+</body>
+</html>

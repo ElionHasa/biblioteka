@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Llogaria ime — Biblioteka “Genc Leka”</title>
+  <link rel="stylesheet" href="/tailwind.css">
+</head>
+<body class="flex min-h-screen flex-col">
+  <div id="site-header"></div>
+  <main class="mx-auto w-full max-w-4xl flex-1 px-4 py-10 sm:px-6">
+    <div id="profile" class="flex items-center gap-4"></div>
+    <section class="mt-8">
+      <h2 class="text-xl font-semibold">Librat që ke tani</h2>
+      <div id="current" class="mt-4 grid gap-3 sm:grid-cols-2"></div>
+    </section>
+    <section class="mt-10">
+      <h2 class="text-xl font-semibold">Historiku</h2>
+      <div id="history" class="mt-4 divide-y divide-slate-100 rounded-2xl bg-white shadow-sm ring-1 ring-slate-200"></div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="/common.js"></script>
+  <script src="/layout.js"></script>
+  <script src="/llogaria.js"></script>
+</body>
+</html>
